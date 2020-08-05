@@ -6,7 +6,6 @@ $query =  "SELECT * FROM `login`";
 $result = mysqli_query ($connection, $query) or die ("SELECT Error ". mysqli_error($connection));
 	
 
-
 //checking success or not  
 if ($result && $var_username === 'admin' && $var_password === 'admin'){
 

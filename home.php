@@ -57,7 +57,6 @@ tr:nth-child(even) {
     background-color: lightgrey;
 }
 </style>
-
      <body>
 <div class="header">
 	<h1>MotoCar Database</h1>
