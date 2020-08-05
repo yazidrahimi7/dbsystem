@@ -20,7 +20,6 @@ if ($result && $var_username === 'admin' && $var_password === 'admin'){
 			</script>";
 		
 	}
-
 mysqli_close($connection); 	
 ?>
 ?>
