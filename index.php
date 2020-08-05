@@ -1,4 +1,3 @@
-<<<<<<< HEAD
      <html>
      <head>
      <title></title>
@@ -378,7 +377,6 @@ Procedure 2 -
    <!-- display driver address end -->
  
      </body>
-=======
      <html>
      <head>
      <title></title>
@@ -758,5 +756,4 @@ Procedure 2 -
    <!-- display driver address end -->
  
      </body>
->>>>>>> b9dfba62cee2e4fe7a9fb3eb8da25505b904b176
      </html>
