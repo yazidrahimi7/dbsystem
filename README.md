@@ -3,7 +3,7 @@
 This is a portfolio project also an alternate version of iSMS 1.0 where I created a database implemented with
 what I learned from my studies.
 
-Some of the features are using those methods:
+Some of the features are using those methods: <br>
 Function:
 
 1.  Discount - to calculate price discount from User ID entered.
