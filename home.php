@@ -59,8 +59,6 @@ tr:nth-child(even) {
 </style>
 
      <body>
-     
-
 <div class="header">
 	<h1>MotoCar Database</h1>
 	<h4 style="text-align:right; margin:10px;"><a style="color:#FFF;" href="logout.php">Logout</a> </h4>

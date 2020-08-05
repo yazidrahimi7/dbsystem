@@ -26,6 +26,7 @@ DELIMITER $$
 --
 -- Procedures
 --
+<<<<<<< HEAD
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addnewvehicle` (IN `Vehicle_ID` INT(10), IN `Policy_ID` INT(10), IN `Driver_ID` INT(10), IN `Year` INT(10), IN `Model` VARCHAR(50), IN `PlateNo` VARCHAR(10), IN `Active` VARCHAR(10))  BEGIN
     INSERT INTO vehicle(
         Vehicle_ID,
@@ -65,11 +66,53 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listvehicle` (`id` INT(10))  BEGIN
         SELECT Vehicle_ID, Driver_ID, Policy_ID, Year, Model, PlateNo, Active FROM vehicle where Driver_ID = id;
     CLOSE cur_listvehicle;
 
+=======
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addnewvehicle` (IN `Vehicle_ID` INT(10), IN `Policy_ID` INT(10), IN `Driver_ID` INT(10), IN `Year` INT(10), IN `Model` VARCHAR(50), IN `PlateNo` VARCHAR(10), IN `Active` VARCHAR(10))  BEGIN
+    INSERT INTO vehicle(
+        Vehicle_ID,
+        Policy_ID,
+        Driver_ID,
+        Year,
+        Model,
+        PlateNo,
+        Active
+    )
+VALUES(
+    Vehicle_ID,
+    Policy_ID,
+    Driver_ID,
+    Year,
+    Model,
+    PlateNo,
+    Active
+);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listvehicle` (`id` INT(10))  BEGIN
+	DECLARE v_vehicleID int(10);
+    DECLARE v_DriverID int(10);
+    DECLARE v_PolicyID int(10);
+    DECLARE v_year int(10);
+    DECLARE v_model varchar(50);
+    DECLARE v_plateno varchar(50);
+    DECLARE v_active varchar(50); 
+        
+        
+	DECLARE cur_listvehicle CURSOR FOR SELECT Vehicle_ID, Driver_ID, Policy_ID, Year, Model, PlateNo, Active FROM vehicle;
+    OPEN cur_listvehicle;
+   
+    	FETCH cur_listvehicle INTO v_vehicleID, v_DriverID, v_PolicyID, v_year, v_model, v_plateno, v_active;
+   		
+        SELECT Vehicle_ID, Driver_ID, Policy_ID, Year, Model, PlateNo, Active FROM vehicle where Driver_ID = id;
+    CLOSE cur_listvehicle;
+
+>>>>>>> 49f4a66493da3e1e1d0c97f19835df41a4285f66
 END$$
 
 --
 -- Functions
 --
+<<<<<<< HEAD
 CREATE DEFINER=`root`@`localhost` FUNCTION `disc` (`payopt` VARCHAR(50)) RETURNS DECIMAL(10,1) BEGIN
     	DECLARE v_disc decimal(10,1);
         
@@ -90,6 +133,28 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `stat` (`bal` INT(10)) RETURNS INT(10
     END IF;
     
        RETURN(v_stat);
+=======
+CREATE DEFINER=`root`@`localhost` FUNCTION `disc` (`payopt` VARCHAR(50)) RETURNS DECIMAL(10,1) BEGIN
+    	DECLARE v_disc decimal(10,1);
+        
+        IF payopt = 'MONTHLY' THEN SET v_disc = 0.3;
+        ELSEIF payopt = 'ANNUALLY' THEN SET v_disc = 0.2;
+        ELSE SET v_disc = 0.1;
+        
+    	END IF;
+        RETURN(v_disc);
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `stat` (`bal` INT(10)) RETURNS INT(10) BEGIN
+    	DECLARE v_stat int(10);
+        
+    IF bal >= 1 AND bal < 100 THEN SET v_stat = 1;
+    ELSEIF bal >= 100 THEN SET v_stat = 2;
+    ELSE SET v_stat = 3;
+    END IF;
+    
+       RETURN(v_stat);
+>>>>>>> 49f4a66493da3e1e1d0c97f19835df41a4285f66
 END$$
 
 DELIMITER ;
