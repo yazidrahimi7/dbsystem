@@ -9,12 +9,12 @@ $result = mysqli_query ($connection, $query) or die ("SELECT Error ". mysqli_err
 //checking success or not  
 if ($result && $var_username === 'admin' && $var_password === 'admin'){
 
-	header("location:home.php");
+	header("location:index.php");
 	} else {
 			echo 
 			"<script> 
 			alert('Wrong username or password!');
-			window.location.href='index.php';
+			window.location.href='login.php';
 			</script>";
 		
 	}
