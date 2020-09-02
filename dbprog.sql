@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2020 at 12:34 PM
+-- Generation Time: Aug 07, 2020 at 04:08 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -26,7 +26,6 @@ DELIMITER $$
 --
 -- Procedures
 --
-<<<<<<< HEAD
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addnewvehicle` (IN `Vehicle_ID` INT(10), IN `Policy_ID` INT(10), IN `Driver_ID` INT(10), IN `Year` INT(10), IN `Model` VARCHAR(50), IN `PlateNo` VARCHAR(10), IN `Active` VARCHAR(10))  BEGIN
     INSERT INTO vehicle(
         Vehicle_ID,
@@ -66,53 +65,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listvehicle` (`id` INT(10))  BEGIN
         SELECT Vehicle_ID, Driver_ID, Policy_ID, Year, Model, PlateNo, Active FROM vehicle where Driver_ID = id;
     CLOSE cur_listvehicle;
 
-=======
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addnewvehicle` (IN `Vehicle_ID` INT(10), IN `Policy_ID` INT(10), IN `Driver_ID` INT(10), IN `Year` INT(10), IN `Model` VARCHAR(50), IN `PlateNo` VARCHAR(10), IN `Active` VARCHAR(10))  BEGIN
-    INSERT INTO vehicle(
-        Vehicle_ID,
-        Policy_ID,
-        Driver_ID,
-        Year,
-        Model,
-        PlateNo,
-        Active
-    )
-VALUES(
-    Vehicle_ID,
-    Policy_ID,
-    Driver_ID,
-    Year,
-    Model,
-    PlateNo,
-    Active
-);
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `listvehicle` (`id` INT(10))  BEGIN
-	DECLARE v_vehicleID int(10);
-    DECLARE v_DriverID int(10);
-    DECLARE v_PolicyID int(10);
-    DECLARE v_year int(10);
-    DECLARE v_model varchar(50);
-    DECLARE v_plateno varchar(50);
-    DECLARE v_active varchar(50); 
-        
-        
-	DECLARE cur_listvehicle CURSOR FOR SELECT Vehicle_ID, Driver_ID, Policy_ID, Year, Model, PlateNo, Active FROM vehicle;
-    OPEN cur_listvehicle;
-   
-    	FETCH cur_listvehicle INTO v_vehicleID, v_DriverID, v_PolicyID, v_year, v_model, v_plateno, v_active;
-   		
-        SELECT Vehicle_ID, Driver_ID, Policy_ID, Year, Model, PlateNo, Active FROM vehicle where Driver_ID = id;
-    CLOSE cur_listvehicle;
-
->>>>>>> 49f4a66493da3e1e1d0c97f19835df41a4285f66
 END$$
 
 --
 -- Functions
 --
-<<<<<<< HEAD
 CREATE DEFINER=`root`@`localhost` FUNCTION `disc` (`payopt` VARCHAR(50)) RETURNS DECIMAL(10,1) BEGIN
     	DECLARE v_disc decimal(10,1);
         
@@ -133,28 +90,6 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `stat` (`bal` INT(10)) RETURNS INT(10
     END IF;
     
        RETURN(v_stat);
-=======
-CREATE DEFINER=`root`@`localhost` FUNCTION `disc` (`payopt` VARCHAR(50)) RETURNS DECIMAL(10,1) BEGIN
-    	DECLARE v_disc decimal(10,1);
-        
-        IF payopt = 'MONTHLY' THEN SET v_disc = 0.3;
-        ELSEIF payopt = 'ANNUALLY' THEN SET v_disc = 0.2;
-        ELSE SET v_disc = 0.1;
-        
-    	END IF;
-        RETURN(v_disc);
-END$$
-
-CREATE DEFINER=`root`@`localhost` FUNCTION `stat` (`bal` INT(10)) RETURNS INT(10) BEGIN
-    	DECLARE v_stat int(10);
-        
-    IF bal >= 1 AND bal < 100 THEN SET v_stat = 1;
-    ELSEIF bal >= 100 THEN SET v_stat = 2;
-    ELSE SET v_stat = 3;
-    END IF;
-    
-       RETURN(v_stat);
->>>>>>> 49f4a66493da3e1e1d0c97f19835df41a4285f66
 END$$
 
 DELIMITER ;
@@ -256,7 +191,26 @@ INSERT INTO `driver` (`id`, `Driver_ID`, `Policy_ID`, `firstName`, `lastName`, `
 (7, 107, 7, 'Jack', 'Aaron', '1997-05-09', '011-55486247', 941, 'Male'),
 (8, 108, 8, 'Anuar', 'Musa', '2020-03-27', '011-98563247', 931, 'Male'),
 (9, 109, 9, 'Azmin', 'Ali', '1997-12-31', '011-69853147', 970, 'Male'),
-(10, 110, 10, 'Mazlan', 'Osman', '1989-12-28', '011-5426894', 988, 'Male');
+(10, 110, 10, 'Mazlan', 'Osman', '1989-12-28', '011-5426894', 988, 'Male'),
+(13, 1, 1, '1', '1', '2020-07-29', '1', 1, '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `uname` varchar(50) NOT NULL,
+  `pswd` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`uname`, `pswd`) VALUES
+('admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -323,7 +277,8 @@ INSERT INTO `vehicle` (`id`, `Vehicle_ID`, `Driver_ID`, `Policy_ID`, `Year`, `Mo
 (7, 10007, 107, 7, 2015, 'AUDI', 'KDE 8543', 'YES'),
 (8, 10008, 108, 8, 2013, 'MAZDA', 'RNR 6534', 'YES'),
 (9, 10009, 109, 9, 2020, 'MITSUBISHI', 'WPE 7777', 'YES'),
-(10, 10010, 110, 10, 2019, 'SUBARU', 'PRE 5798', 'YES');
+(10, 10010, 110, 10, 2019, 'SUBARU', 'PRE 5798', 'YES'),
+(21, 1, 1, 1, 1, '1', '1', '1');
 
 --
 -- Indexes for dumped tables
@@ -379,7 +334,7 @@ ALTER TABLE `driaddr`
 -- AUTO_INCREMENT for table `driver`
 --
 ALTER TABLE `driver`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `policy`
@@ -391,7 +346,7 @@ ALTER TABLE `policy`
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

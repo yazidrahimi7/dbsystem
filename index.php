@@ -26,7 +26,7 @@ html {
 .header {
 	padding: 10px;
 	color: white;
-	background-color: #000066;
+	background-color: black;
 	text-align: center;
 }
 
@@ -35,7 +35,7 @@ body {
 	margin: 0 0 100px;
 	padding: 0;
 	overflow-x: hidden;	
-	background-color: powderblue;
+	background-color: lightgrey;
 }
 
  
@@ -54,7 +54,7 @@ th, td {
 }
 
 tr:nth-child(even) {
-    background-color: lightgrey;
+    background-color: #a6a6a6;
 }
 </style>
      <body>
